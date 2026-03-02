@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-primary mb-4">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">Task Manager</span>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Task Form Section -->
+        <div class="card mb-5">
+            <div class="card-header bg-light">
+                <h4 class="mb-0">Add New Task</h4>
+            </div>
+            <div class="card-body">
+                <form id="taskForm" novalidate>
+                    <!-- Task Name -->
+                    <div class="mb-3">
+                        <label for="taskName" class="form-label">Task Name</label>
+                        <input type="text" class="form-control" id="taskName" required minlength="3">
+                        <div class="invalid-feedback">
+                            Please enter a task name (at least 3 characters).
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" rows="3" required minlength="5"></textarea>
+                        <div class="invalid-feedback">
+                            Please provide a description (at least 5 characters).
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Assigned To -->
+                        <div class="col-md-4 mb-3">
+                            <label for="assignedTo" class="form-label">Assigned To</label>
+                            <input type="text" class="form-control" id="assignedTo" required>
+                            <div class="invalid-feedback">
+                                Please specify who this task is assigned to.
+                            </div>
+                        </div>
+
+                        <!-- Due Date -->
+                        <div class="col-md-4 mb-3">
+                            <label for="dueDate" class="form-label">Due Date</label>
+                            <input type="date" class="form-control" id="dueDate" required>
+                            <div class="invalid-feedback">
+                                Please select a valid due date.
+                            </div>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="col-md-4 mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-select" id="status" required>
+                                <option value="" selected disabled>Choose status...</option>
+                                <option value="TODO">TODO</option>
+                                <option value="IN PROGRESS">IN PROGRESS</option>
+                                <option value="REVIEW">REVIEW</option>
+                                <option value="DONE">DONE</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a status.
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                    <div id="formAlert" class="mt-3"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Task List Section -->
+        <h3 class="mb-3">Tasks List</h3>
+        <div class="list-group mb-5" id="taskList">
+
+            <!-- Sample Card 1 -->
+            <div
+                class="list-group-item list-group-item-action flex-column align-items-start border-start border-5 border-primary mb-3 shadow-sm rounded">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Design Homepage Wireframe</h5>
+                    <small class="text-muted">Due: 2026-02-15</small>
+                </div>
+                <p class="mb-1">Create a low-fidelity wireframe for the new homepage layout using Figma.</p>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div>
+                        <small>Assigned to: <strong>Sakthikumar</strong></small>
+                    </div>
+                    <div>
+                        <select class="form-select form-select-sm d-inline-block w-auto me-2 priority-select">
+                            <option value="LOW" selected>LOW</option>
+                            <option value="MEDIUM">MEDIUM</option>
+                            <option value="URGENT">URGENT</option>
+                        </select>
+                        <span class="badge bg-primary">TODO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Card 2 -->
+            <div
+                class="list-group-item list-group-item-action flex-column align-items-start border-start border-5 border-warning mb-3 shadow-sm rounded">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Implement Authentication</h5>
+                    <small class="text-muted">Due: 2026-02-15</small>
+                </div>
+                <p class="mb-1">Set up JWT authentication for the backend API.</p>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div>
+                        <small>Assigned to: <strong>Kumar</strong></small>
+                    </div>
+                    <div>
+                        <select class="form-select form-select-sm d-inline-block w-auto me-2 priority-select">
+                            <option value="LOW" selected>LOW</option>
+                            <option value="MEDIUM">MEDIUM</option>
+                            <option value="URGENT">URGENT</option>
+                        </select>
+                        <span class="badge bg-warning text-dark">IN PROGRESS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Card 3 -->
+            <div
+                class="list-group-item list-group-item-action flex-column align-items-start border-start border-5 border-info mb-3 shadow-sm rounded">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Code Review: User Profile</h5>
+                    <small class="text-muted">Due: 2026-02-15</small>
+                </div>
+                <p class="mb-1">Review the pull request for the user profile update feature.</p>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div>
+                        <small>Assigned to: <strong>Vishva</strong></small>
+                    </div>
+                    <div>
+                        <select class="form-select form-select-sm d-inline-block w-auto me-2 priority-select">
+                            <option value="LOW" selected>LOW</option>
+                            <option value="MEDIUM">MEDIUM</option>
+                            <option value="URGENT">URGENT</option>
+                        </select>
+                        <span class="badge bg-info text-dark">REVIEW</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Card 4 -->
+            <div
+                class="list-group-item list-group-item-action flex-column align-items-start border-start border-5 border-success mb-3 shadow-sm rounded">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Fix Navigation Bug</h5>
+                    <small class="text-muted">Due: 2026-02-15</small>
+                </div>
+                <p class="mb-1">Resolved the issue where the mobile menu wasn't closing on click.</p>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div>
+                        <small>Assigned to: <strong>Pradeep</strong></small>
+                    </div>
+                    <div>
+                        <select class="form-select form-select-sm d-inline-block w-auto me-2 priority-select">
+                            <option value="LOW" selected>LOW</option>
+                            <option value="MEDIUM">MEDIUM</option>
+                            <option value="URGENT">URGENT</option>
+                        </select>
+                        <span class="badge bg-success">DONE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Card 5 -->
+            <div
+                class="list-group-item list-group-item-action flex-column align-items-start border-start border-5 border-primary mb-3 shadow-sm rounded">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Write API Documentation</h5>
+                    <small class="text-muted">Due: 2026-02-25</small>
+                </div>
+                <p class="mb-1">Document all the new endpoints created for the dashboard analytics.</p>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div>
+                        <small>Assigned to: <strong>Lokesh</strong></small>
+                    </div>
+                    <div>
+                        <select class="form-select form-select-sm d-inline-block w-auto me-2 priority-select">
+                            <option value="LOW" selected>LOW</option>
+                            <option value="MEDIUM">MEDIUM</option>
+                            <option value="URGENT">URGENT</option>
+                        </select>
+                        <span class="badge bg-primary">TODO</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
